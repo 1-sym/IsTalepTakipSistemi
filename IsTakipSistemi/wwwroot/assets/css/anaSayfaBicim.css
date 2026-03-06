@@ -1,0 +1,93 @@
+﻿.anaSayfaBicim1 {
+    background-color: #ade5ff !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.anaSayfaBicim2 {
+    background-color: #009cff !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaBicim3 {
+    background-color: #a50000 !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaBicim4 {
+    background-color: #ffc600 !important;
+    font-weight: bold !important;
+    color: #0d87c0 !important;
+}
+.anaSayfaBicim5 {
+    background-color: #536e83 !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaBicim6 {
+    background-color: #ffc600 !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaBicim7 {
+    background-color: #0bb01b !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaBicim8 {
+    background-color: #536e83 !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaBicim9 {
+    background-color: #0060ff !important;
+    font-weight: bold !important;
+    color: white !important;
+}
+.anaSayfaFont1 {
+    color: black !important;
+}
+
+.anaSayfaFont2 {
+    color: white !important;
+}
+.anaSayfaFont3 {
+    color: white !important;
+}
+
+.anaSayfaFont4 {
+    color: white !important;
+}
+
+.anaSayfaFont5 {
+    color: white !important;
+}
+.anaSayfaFont6 {
+    color: white !important;
+}
+
+
+.anaSayfaBaslik1 {
+    color: inherit;
+}
+
+.anaSayfaBaslik2 {
+    color: inherit;
+}
+
+.anaSayfaBaslik3 {
+    color: inherit;
+}
+
+.anaSayfaBaslik4 {
+    color: inherit;
+}
+
+.anaSayfaBaslik5 {
+    color: inherit;
+}
+
+.sagCizgi{
+    border-right: dashed 1px;
+    border-right-color: dodgerblue; 
+}
