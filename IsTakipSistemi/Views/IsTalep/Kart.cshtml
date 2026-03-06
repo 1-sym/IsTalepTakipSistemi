@@ -1,0 +1,123 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+@using IsTakipSistemi.Data;
+    varlik vari = new varlik();
+    List<SelectListItem> Personel = new List<SelectListItem>();
+    List<PersonelAYRINTI> hepsi = vari.PersonelAYRINTIler.ToList();
+    for (int i = 0; i < hepsi.Count; i++)
+    {
+        SelectListItem yeni = new SelectListItem();
+        yeni.Text = hepsi[i].adi + " " + hepsi[i].soyadi;
+        yeni.Value = hepsi[i].personelID.ToString();
+        
+        Personel.Add(yeni);
+    
+
+}
+    List<SelectListItem> oncelik = new List<SelectListItem>();
+    List<IsOncelikBilgisi> hepsi2 = vari.IsOncelikBilgisiler.ToList();
+    for (int i = 0; i < hepsi2.Count; i++)
+    {
+        SelectListItem yeni = new SelectListItem();
+        yeni.Text = hepsi2[i].detay;
+        yeni.Value = hepsi2[i].oncelikID.ToString();
+        
+        oncelik.Add(yeni);
+    
+
+}
+    List<SelectListItem> durum = new List<SelectListItem>();
+    
+    for (int i = 0; i <= 1; i++)
+    {
+        SelectListItem yeni = new SelectListItem();
+        if(i==0)
+            yeni.Text = "Hayır";
+       else
+            yeni.Text = "Evet";
+        yeni.Value = i.ToString();
+
+        durum.Add(yeni);
+
+
+    }
+}
+@model IsTakipSistemi.Models.IsTalepModel
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<div class="row">
+    <div class="col-6">
+        <a href="@String.Format("/IsTalep/Index")" class="float-start" style="margin-top:5px; margin-left:5px">
+            <i class="fa fa-arrow-left h1 mb-0 text-primary" style="font-size:16px"><span style="margin-left:10px; ">Geri Dön</span></i>
+        </a>
+    </div></div>
+<form id="formKayit" name="formKayit" autocomplete="off">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="row">
+            
+              
+            <div class="form-group">
+                <label for="member-name" class="col-form-label">Personel</label>
+                @Html.DropDownListFor(m => m.kartVerisi.i_personelID, Personel, "Lütfen Seçiniz", new { @class = "form-control select2", id = "personel" })
+            </div>
+            <div class="form-group">
+                <label for="member-name" class="col-form-label">Talep Tamamlandı mı?</label>
+                @Html.DropDownListFor(m => m.kartVerisi.talepTamamlandimi, durum, "Lütfen Seçiniz", new { @class = "form-control select2", id = "tamamlandımı" })
+            </div>
+            <div class="form-group">
+                <label for="member-name" class="col-form-label">Öncelik</label>
+                @Html.DropDownListFor(m => m.kartVerisi.i_oncelikID, oncelik, "Lütfen Seçiniz", new { @class = "form-control select2", id = "öncelik" })
+
+            </div>
+            <div class="form-group">
+                <label for="member-name" class="col-form-label">Talep</label>
+                @Html.TextAreaFor(m => m.kartVerisi.talepAyrinti, new { @class = "form-control", maxlength = "250", placeholder = "Talep" })
+            </div>
+            
+            
+         
+           
+            @Html.HiddenFor(model => model.kartVerisi.talepID)
+           
+        </div>
+        <hr />
+        <button type="button" onclick="ekle()" id="btnKaydet" class="btn btn-success" data-bs-toggle="modal">
+            Kaydet
+        </button>
+    </div>
+</form>
+<script>
+    function ekle() {
+        var valdata = $("#formKayit").serialize();
+        console.table(valdata);
+        $.ajax({
+            url: "/IsTalep/Kaydet/",
+            type: "Post",
+            data: valdata,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            dataType: "json",
+            success: function (response) {
+                if (!response.success) {
+                    Swal.fire(
+                        'Hata',
+                        response.message,
+                        'error'
+                    );
+                    return false;
+                }
+                else {
+                    Swal.fire(
+                        'Başarılı',
+                        response.message,
+                        'success'
+                    ).then(function () {
+                        
+                            window.location.href = "/IsTalep/Index/";
+                        
+                    })
+                }
+            }
+        });
+    }
+</script>
+
