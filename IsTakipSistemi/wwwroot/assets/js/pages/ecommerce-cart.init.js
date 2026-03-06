@@ -1,0 +1,1 @@
+$("input[name='IsTakipSistemi_vertical']").TouchSpin({verticalbuttons:!0});
